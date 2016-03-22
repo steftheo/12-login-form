@@ -6,13 +6,13 @@ export default class LoginForm {
       { email: `admin@google.com`, password: `pandas` },
       { email: `email@email.com`, password: `honeycrisp` },
     ];
-}
+  }
 
-validate(username, password) {
-  this.username = username;
-  this.password = password;
+  validate(username, password) {
+    this.username = username;
+    this.password = password;
 
-  const findValid = (snowball, current);
+    const findValid = (snowball, current);
     if (current.username === username && current.password === password) {
       return true;
     }
