@@ -48,7 +48,7 @@ const appScript = Concat(babelScript, {
   outputFile: '/app.js',
 });
 
-const testTree = rename('tests', 'index.html', 'test.html');
+const testTree = rename(new LiveReload('tests'), 'index.html', 'test.html');
 
 const testJs = Concat(testTree, {
   inputFiles: ['**/*.js'],
