@@ -4,7 +4,7 @@
 
 const LoginForm = require(`login-form`);
 
-function asyncAssert (cb) {
+function asyncAssert(cb) {
   return new Promise((resolve) => {
     window.setTimeout(() => {
       cb();
@@ -13,8 +13,20 @@ function asyncAssert (cb) {
   });
 }
 
-test(`the LoginForm class exists`, (assert) => {
+function createFormElement() {
   const formEl = document.createElement(`form`);
+  formEl.innerHTML = `
+    <input class="login-form__email">
+    <input class="login-form__password">
+    <div class="login-form__validation-message"></div>
+    <button>Save</button>
+  `;
+
+  return formEl;
+}
+
+test(`the LoginForm class exists`, (assert) => {
+  const formEl = createFormElement();
 
   assert.ok(LoginForm, `The "login-form" module should export a class`);
 
@@ -23,7 +35,7 @@ test(`the LoginForm class exists`, (assert) => {
 });
 
 test(`the LoginForm can check for valid login attempts`, (assert) => {
-  const formEl = document.createElement(`form`);
+  const formEl = createFormElement();
   const form = new LoginForm(formEl, `email@email.com`);
 
   assert.ok(form.validate(`aaron@theironyard.com`, `password123`),
@@ -49,18 +61,6 @@ test(`the LoginForm can check for valid login attempts`, (assert) => {
      not passed into the constructor email@email.com:pandas`);
 });
 
-function createFormElement() {
-  const formEl = document.createElement(`form`);
-  formEl.innerHTML = `
-    <input class="login-form__email">
-    <input class="login-form__password">
-    <div class="login-form__validation-message"></div>
-    <button>Save</button>
-  `;
-
-  return formEl;
-}
-
 test(`the LoginForm should be able to validate inputs`, (assert) => {
   // Tells test to wait since clicks are async
   const formEl = createFormElement();
@@ -73,14 +73,17 @@ test(`the LoginForm should be able to validate inputs`, (assert) => {
   // Attempt validating an empty form
   form.validateInputs();
 
-  assert.equal(validationMessage.innerText.trim(), `The credentials are invalid`);
+  assert.equal(validationMessage.innerText.trim(), `The credentials are invalid`,
+    `The validation message element should read
+     "The credentials are invalid" with invalid inputs`);
 
   // Fill in the form with valid credentials
   emailInput.value = `email@email.com`;
   passwordInput.value = `honeycrisp`;
   form.validateInputs();
 
-  assert.equal(validationMessage.innerText.trim(), ``);
+  assert.equal(validationMessage.innerText.trim(), ``,
+    `There should be no validation message when the credentials are filled in correctly`);
 });
 
 test(`the LoginForm should validate when submitted`, (assert) => {
@@ -98,14 +101,17 @@ test(`the LoginForm should validate when submitted`, (assert) => {
   button.click();
 
   asyncAssert(() => {
-    assert.equal(validationMessage.innerText.trim(), `The credentials are invalid`);
+    assert.equal(validationMessage.innerText.trim(), `The credentials are invalid`,
+      `The validation message element should read
+       "The credentials are invalid" when the form submits with invalid inputs`);
   }).then(() => {
     // Fill in the form with valid credentials
     emailInput.value = `email@email.com`;
     passwordInput.value = `honeycrisp`;
     form.validateInputs();
 
-    assert.equal(validationMessage.innerText.trim(), ``);
+    assert.equal(validationMessage.innerText.trim(), ``,
+      `There should be no validation message when the form is submitted correctly`);
     done();
   });
 });
