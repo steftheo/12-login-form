@@ -4,7 +4,7 @@ export default class LoginForm {
     this.userDirectory = [
       { email: `aaron@theironyard.com`, password: `password123` },
       { email: `admin@google.com`, password: `pandas` },
-      { email: `email@email.com`, password: `honeycrisp` },
+      { email: `stefan@stefantheofilos.com`, password: `honeycrisp` },
     ];
   }
 
@@ -12,10 +12,9 @@ export default class LoginForm {
     this.username = username;
     this.password = password;
 
-    const findValid = (snowball, current);
-    if (current.username === username && current.password === password) {
-      return true;
+    if (username === this.userDirectory && password === this.userDirectory) {
+      return this.userDirectory;
     }
-    return snowball;
-  };
+    return false;
+  }
 }
