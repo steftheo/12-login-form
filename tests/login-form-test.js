@@ -43,7 +43,7 @@ test(`the LoginForm can check for valid login attempts`, (assert) => {
   assert.ok(form.validate(`admin@google.com`, `pandas`),
     `The form should validate with credentials admin@google.com:pandas`);
   assert.ok(form.validate(`email@email.com`, `honeycrisp`),
-    `The form should validate with credentials email@email.com:pandas`);
+    `The form should validate with credentials email@email.com:honeycrisp`);
 
   assert.notOk(form.validate(``, ``),
     `The form should not validate with empty credentials`);
