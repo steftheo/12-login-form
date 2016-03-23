@@ -17,4 +17,18 @@ export default class LoginForm {
       return carry;
     }, false);
   }
+
+  form.addEventListener(`submit`, (ev) => {
+      ev.preventDefault();
+      this.validatInputs();
+  });
+
+  validateInputs() {
+    const emailInput = document.querySelector(`.login-form__email`);
+    const passwordInput = document.querySelector('.login-form__password');
+
+    if (emailInput !== passwordInput) {
+      return `The credentials are invalid`;
+    }
+  }
 }
