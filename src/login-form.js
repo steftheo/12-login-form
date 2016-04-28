@@ -15,6 +15,8 @@ export default class LoginForm {
   }
 
   validate(username, password) {
+    this.username = username;
+    this.password = password;
     return this.userDirectory.reduce((carry, current) => {
       if (current.email === username && current.password === password) {
         return true;
@@ -25,8 +27,8 @@ export default class LoginForm {
   }
 
   validateInputs() {
-    const emailInput = document.querySelector(`.login-form__email`);
-    const passwordInput = document.querySelector(`.login-form__password`);
+    const emailInput = document.querySelector(`.login-form__email`).value;
+    const passwordInput = document.querySelector(`.login-form__password`).value;
 
     this.addEventListener(`submit`, (ev) => {
 
