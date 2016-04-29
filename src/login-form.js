@@ -17,13 +17,17 @@ export default class LoginForm {
   validate(username, password) {
     this.username = username;
     this.password = password;
-    return this.userDirectory.reduce((carry, current) => {
-      if (current.email === username && current.password === password) {
+
+    const findValid = (snowball, current) => {
+      if (current.username === username && current.password === password) {
         return true;
       }
 
-      return carry;
-    }, false);
+      return snowball;
+    };
+
+
+    return this.userDirectory.reduce(findValid, false);
   }
 
   validateInputs() {
