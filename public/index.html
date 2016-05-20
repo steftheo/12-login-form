@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>12 Login Form</title>
-  <link rel="stylesheet" href="/app.css">
+    <meta charset="utf-8">
+    <title>12 Login Form</title>
+    <link rel="stylesheet" href="/app.css">
 </head>
+
 <body>
-<div class="top">
-  <img class="logo" src="treemo-logo.png" alt="" />
-</div>
 
-<div class="main">
-  <form class="login-form">
-  <div class="element">
-  <p class="userN">Username</p><input type = "text" class="login-form__email"></div>
-  <div class="element-two">
-  <p class="userP">Password</p><input type = "text" class="login-form__password"></div>
-  <div class="login-form__validation-message"></div>
-  <div class="button-div">
-  <button class="button">Sign In</button>
-  </div>
-</form>
-</div>
+    <div class="main">
+        <div class="top">
+          <!-- <img class="image-top" src="bg-login-top.png" alt="" /> -->
+          <img class="logo" src="treemo-logo.png" alt="" />
+        </div>
+        <form class="login-form">
+            <div class="login">
+              <div class="element">
+                  <p class="userN">Username</p>
+                  <input type="text" class="login-form__email">
+              </div>
+              <div class="element-two">
+                  <p class="userP">Password</p>
+                  <input type="text" class="login-form__password">
+              </div>
+              <div class="login-form__validation-message"></div>
+              <div class="button-div">
+                  <button class="button">Sign In</button>
+              </div>
+            </div>
+        </form>
+    </div>
 
-  <script src="/vendor.js" charset="utf-8"></script>
-  <script src="/app.js" charset="utf-8"></script>
+    <script src="/vendor.js" charset="utf-8"></script>
+    <script src="/app.js" charset="utf-8"></script>
 
-  <script type="text/javascript">
-    var form = document.querySelector(`.login-form`);
-    var LoginForm = require(`login-form`);
+    <script type="text/javascript">
+        var form = document.querySelector(`.login-form`);
+        var LoginForm = require(`login-form`);
 
-    new LoginForm(form, `youremail@email.com`);
-  </script>
+        new LoginForm(form, `youremail@email.com`);
+    </script>
 </body>
+
 </html>
