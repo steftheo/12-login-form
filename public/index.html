@@ -1,20 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>12 Login Form</title>
-  <link rel="stylesheet" href="/app.css">
+    <meta charset="utf-8">
+    <title>12 Login Form</title>
+    <link rel="stylesheet" href="/app.css">
 </head>
+
 <body>
 
-  <script src="/vendor.js" charset="utf-8"></script>
-  <script src="/app.js" charset="utf-8"></script>
+    <div class="main">
+        <div class="top">
+          <!-- <img class="image-top" src="bg-login-top.png" alt="" /> -->
+          <img class="logo" src="treemo-logo.png" alt="" />
+        </div>
+        <div class="bottom">
+          <form class="login-form">
+              <div class="login">
+                <div class="element">
+                    <p class="username">Username</p>
+                    <input type="text" class="login-form__email">
+                </div>
+                <div class="element-two">
+                    <p class="password">Password</p>
+                    <input type="text" class="login-form__password">
+                </div>
+                <div class="login-form__validation-message"></div>
+                <div class="button-div">
+                    <button class="button">Sign In</button>
+                </div>
+              </div>
+          </form>
+        </div>
+    </div>
 
-  <script type="text/javascript">
-    var form = document.querySelector(`.login-form`);
-    var LoginForm = require(`login-form`);
+    <script src="/vendor.js" charset="utf-8"></script>
+    <script src="/app.js" charset="utf-8"></script>
 
-    new LoginForm(form, `youremail@email.com`);
-  </script>
+    <script type="text/javascript">
+        var form = document.querySelector(`.login-form`);
+        var LoginForm = require(`login-form`);
+
+        new LoginForm(form, `youremail@email.com`);
+    </script>
 </body>
+
 </html>
