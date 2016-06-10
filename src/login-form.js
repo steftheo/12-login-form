@@ -2,43 +2,35 @@
 export default class LoginForm {
   constructor(form, email) {
     this.form = form;
-    this.form.addEventListener(`submit`, (ev) => {
-      ev.preventDefault();
-      this.validateInputs();
-    });
-
-    this.userDirectory = [
+    this.userinfo = [
       { username: `aaron@theironyard.com`, password: `password123` },
       { username: `admin@google.com`, password: `pandas` },
       { username: email, password: `honeycrisp` },
     ];
+    this.form.addEventListener(`submit`, (ev) => {
+      ev.preventDefault();
+      this.validateInputs();
+    });
   }
 
   validate(username, password) {
-    this.username = username;
-    this.password = password;
-
-    const findValid = (snowball, current) => {
+    return this.userinfo.reduce((prev, current) => {
       if (current.username === username && current.password === password) {
         return true;
       }
-
-      return snowball;
-    };
-
-
-    return this.userDirectory.reduce(findValid, false);
+      return prev;
+    }, false);
   }
 
   validateInputs() {
-    const emailInput = document.querySelector(`.login-form__email`).value;
-    const passwordInput = document.querySelector(`.login-form__password`).value;
-    const valMsg = this.form.querySelector(`.login-form__validation-message`);
+    const emailInput = this.form.querySelector(`.login-form__email`).value;
+    const passInput = this.form.querySelector(`.login-form__password`).value;
+    const valmsg = this.form.querySelector(`.login-form__validation-message`);
 
-    if (this.validate(emailInput, passwordInput)) {
-      valMsg.innerText = ``;
+    if (this.validate(emailInput, passInput)) {
+      valmsg.innerText = ``;
     } else {
-      valMsg.innerText = `The credentials are invalid`;
+      valmsg.innerText = `The credentials are invalid`;
     }
   }
 }
